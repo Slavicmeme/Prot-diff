@@ -2,8 +2,8 @@ import torch
 from torch import nn, optim
 from tqdm import tqdm
 import argparse
-from model.model import UNet1D, NoiseScheduler
 from utils.utils import encode_sequence
+from model.diff_model import UNet1D, NoiseScheduler
 
 class DiffusionTrainer:
     def __init__(self, model, scheduler):
