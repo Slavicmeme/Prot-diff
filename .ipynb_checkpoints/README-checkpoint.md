@@ -18,21 +18,41 @@ conda activate protdiff-env
 ```
 .
 ├── data/
-│   ├── grampa.csv                  # Raw GRAMPA data
-│   └── grampa_ecoli.csv            # Preprocessed data (filtered for E. coli)
+│   ├── grampa.csv                      # Raw GRAMPA dataset
+│   └── grampa_ecoli.csv                # Preprocessed E. coli-specific subset
+│
+├── load/                               # Directory to store trained diffusion model
+│   └── diffusion_model_*.pt
+│
+├── latents/                            # Directory for generated and filtered latents
+│   ├── generated.pt
+│   └── mic_filtered.pt
+│
+├── results/                            # Final results
+│   ├── final_filtered_sequences.csv    # After MIC and toxicity filtering
+│   └── final_sequences.csv             # After decoding
 │
 ├── data_processor/
-│   └── preprocess_data.py          # Script to preprocess and filter the GRAMPA dataset
-│
-├── train.py                        # Top-level script to train diffusion model
-├── sample_latents.py              # Generate AMP candidates from trained model
-├── apply_mic_filter.py            # Apply MIC regression filter to generated candidates
-├── predict_toxicity.py            # (Optional) Predict toxicity of filtered sequences
-├── decode_latents.py              # Decode latent vectors back into peptide sequences
+│   └── preprocess_data.py              # Script to preprocess GRAMPA data
 │
 ├── model/
-│   ├── model.py                    # UNet1D model and noise scheduler
-│   └── decoder.py (optional)      # If sequence decoding from embeddings is needed
+│   ├── diff_model.py                   # U-Net and noise scheduler definitions
+│   └── toxicity_model.py               # Toxicity prediction model
+│
+├── train/
+│   ├── train_diffusion.py              # CLI for training diffusion model
+│   └── mic_regressor.py                # MIC regression model class
+│
+├── utils/
+│   └── utils.py                        # Shared utilities (e.g., ProtT5 encoder)
+│
+├── train.py                            # Main training entry point
+├── sample_latents.py                   # Generate latent vectors from trained model
+├── apply_mic_filter.py                 # Apply MIC filtering to latents
+├── predict_toxicity.py                 # Predict toxicity for filtered sequences
+├── decode_latents.py                   # Decode latents back into sequences
+└── environment.yml                     # Conda environment specification
+
 ```
 
 ---
