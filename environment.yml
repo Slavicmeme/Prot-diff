@@ -1,0 +1,21 @@
+name: protdiff-env2
+channels:
+  - conda-forge
+  - defaults
+  - pytorch
+dependencies:
+  - python=3.8
+  - pip
+  - pytorch=2.1.0
+  - cudatoolkit=11.8
+  - torchvision
+  - torchaudio
+  - scikit-learn
+  - pandas
+  - numpy
+  - tqdm
+  - biopython
+  - pip:
+      - transformers==4.40.1
+      - sentencepiece
+
