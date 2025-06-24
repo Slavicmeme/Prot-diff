@@ -12,6 +12,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_csv", type=str, required=True, help="Path to filtered CSV file")
     parser.add_argument("--epochs", type=int, default=10, help="Number of training epochs")
+    parser.add_argument("--lr", type=float, default=1e-4, help="learning rate")
     parser.add_argument("--batch_size", type=int, default=8, help="Batch size")
     parser.add_argument("--timesteps", type=int, default=100, help="Number of diffusion timesteps")
     parser.add_argument("--save_dir", type=str, default="load", help="Directory to save model weights")
@@ -26,6 +27,7 @@ def main():
     model = train(
         sequences=sequences,
         epochs=args.epochs,
+        lr=args.lr,
         batch_size=args.batch_size,
         timesteps=args.timesteps
     )

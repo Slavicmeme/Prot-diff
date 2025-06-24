@@ -76,6 +76,7 @@ python data_processor/preprocess_data.py \
 python train.py \
   --data_csv data/grampa_ecoli.csv \
   --epochs 10 \
+  --lr 1e-3 \
   --batch_size 8 \
   --save_dir load
 ```

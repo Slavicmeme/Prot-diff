@@ -20,12 +20,12 @@ class DiffusionTrainer:
         predicted = self.model(x_noisy, t)
         return nn.functional.mse_loss(predicted, noise)
 
-def train(sequences, epochs=10, batch_size=8, timesteps=100):
+def train(sequences, epochs=10, lr=1e-4, batch_size=8, timesteps=100):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = UNet1D().to(device)
     scheduler = NoiseScheduler(timesteps).to(device)
     trainer = DiffusionTrainer(model, scheduler)
-    optimizer = optim.Adam(model.parameters(), lr=1e-4)
+    optimizer = optim.Adam(model.parameters(), lr=lr)
 
     latent = [encode_sequence(seq) for seq in sequences]
     latent = torch.stack(latent).to(device)
