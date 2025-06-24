@@ -4,7 +4,7 @@ import argparse
 import torch
 import os
 
-from model.model import UNet1D, NoiseScheduler
+from model.diff_model import UNet1D, NoiseScheduler
 
 def sample_latents(model, scheduler, n_samples=100, timesteps=100):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
