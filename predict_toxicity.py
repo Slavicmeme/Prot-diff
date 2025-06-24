@@ -3,7 +3,6 @@ import argparse
 import os
 import numpy as np
 from model.toxicity_model import ToxicityPredictor
-import pandas as pd
 
 def dummy_toxicity_data(n=200, dim=1024):
     X = np.random.rand(n, dim)
@@ -13,7 +12,7 @@ def dummy_toxicity_data(n=200, dim=1024):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_latents", required=True, type=str)
-    parser.add_argument("--output_csv", required=True, type=str)
+    parser.add_argument("--output_pt", required=True, type=str, help="Output .pt path")
     args = parser.parse_args()
 
     latents = torch.load(args.input_latents)
@@ -26,6 +25,6 @@ if __name__ == "__main__":
     non_toxic = tox_model.filter_non_toxic(X)
     print(f"{len(non_toxic)} non-toxic candidates selected.")
 
-    os.makedirs(os.path.dirname(args.output_csv), exist_ok=True)
-    df = pd.DataFrame(non_toxic)
-    df.to_csv(args.output_csv, index=False)
+    os.makedirs(os.path.dirname(args.output_pt), exist_ok=True)
+    torch.save(torch.tensor(non_toxic), args.output_pt)
+    print(f"Saved non-toxic sequences to: {args.output_pt}")

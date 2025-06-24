@@ -112,7 +112,7 @@ python apply_mic_filter.py \
 ```bash
 python predict_toxicity.py \
   --input_latents latents/mic_filtered.pt \
-  --output_csv results/final_filtered_sequences.csv
+  --output_pt latents/toxicity_filtered.pt
 ```
 
 ---
