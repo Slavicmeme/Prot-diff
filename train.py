@@ -6,7 +6,7 @@ import torch
 import os
 from datetime import datetime
 
-from train.train_diffusion import train  # ✅ 가장 바깥의 trainer.py로부터 train 함수 사용
+from train.train_diffusion import train
 
 def main():
     parser = argparse.ArgumentParser()
