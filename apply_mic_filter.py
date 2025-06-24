@@ -14,12 +14,12 @@ def save_latents(latents, path):
 def main(args):
     latents = load_latents(args.input_latents)
 
-    # 🔧 임시 MIC 학습 데이터 (예시, 실제론 사전 학습된 모델 로드)
+    # 임시 MIC 학습 데이터 (예시, 실제론 사전 학습된 모델 로드)
     np.random.seed(42)
     X_train = np.random.rand(500, 1024)
     y_train = np.random.uniform(0.0, 2.0, 500)
 
-    # ✅ MIC Regressor 사용
+    # MIC Regressor 사용
     mic_regressor = MICRegressor()
     mic_regressor.fit(X_train, y_train)
 
