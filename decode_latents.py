@@ -25,7 +25,7 @@ def decode_latents(latent_path, reference_csv, output_csv):
     df = pd.DataFrame({"sequence": decoded})
     os.makedirs(os.path.dirname(output_csv), exist_ok=True)
     df.to_csv(output_csv, index=False)
-    print(f"✅ Saved decoded sequences to {output_csv}")
+    print(f"Saved decoded sequences to {output_csv}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
